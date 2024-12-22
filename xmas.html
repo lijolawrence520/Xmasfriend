@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xmas Friend</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Friend</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .hero {
+            background-image: url('https://www.example.com/xmas-tree.jpg');
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .button {
+            background-color: #ff6347;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #ff4500;
+        }
+        footer {
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: url('https://www.example.com/snowflakes.gif') repeat;
+        }
+        .friend-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .friend-list li {
+            background-color: #f7f7f7;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .friend-list li:hover {
+            background-color: #ffe4b5;
+        }
+        #selectedFriend {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="snowflakes"></div>
+
+    <header>
+        <h1>Welcome to the Christmas Friend Website!</h1>
+    </header>
+
+    <div class="hero">
+        <span>Celebrate the Season with a Christmas Friend!</span>
+    </div>
+
+    <div class="main-content">
+        <h2>Season's Greetings!</h2>
+        <p>Enter the names of your Christmas friends, and then click the button to pick a random friend!</p>
+
+        <!-- Input for adding friends -->
+        <input type="text" id="friendName" placeholder="Enter a friend's name" />
+        <button class="button" onclick="addFriend()">Add Friend</button>
+
+        <div id="selectedFriend"></div>
+
+        <h3>Friends List:</h3>
+        <ul id="friendList" class="friend-list"></ul>
+
+        <button class="button" onclick="pickRandomFriend()">Pick a Christmas Friend</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Christmas Friend | Merry Christmas!</p>
+    </footer>
+
+    <script>
+        // Function to add a friend to the list
+        function addFriend() {
+            // Get the input value
+            const friendInput = document.getElementById('friendName');
+            const friendName = friendInput.value.trim();
+            
+            if (friendName === '') {
+                alert('Please enter a valid name!');
+                return;
+            }
+
+            // Get the list element
+            const friendList = document.getElementById('friendList');
+
+            // Create a new list item for the friend
+            const li = document.createElement('li');
+            li.textContent = friendName;
+            li.onclick = function() {
+                removeFriendFromList(li);
+            };
+
+            // Append the new friend to the list
+            friendList.appendChild(li);
+
+            // Clear the input field
+            friendInput.value = '';
+        }
+
+        // Function to remove a friend from the list
+        function removeFriendFromList(friendElement) {
+            friendElement.remove();
+        }
+
+        // Function to pick a random friend from the list
+        function pickRandomFriend() {
+            const friendList = document.getElementById('friendList');
+            const friends = Array.from(friendList.getElementsByTagName('li'));
+
+            if (friends.length === 0) {
+                alert("Please add friends to the list first!");
+                return;
+            }
+
+            // Randomly select a friend
+            const randomIndex = Math.floor(Math.random() * friends.length);
+            const selectedFriend = friends[randomIndex];
+
+            // Display the selected friend's name
+            document.getElementById('selectedFriend').innerHTML = `You've selected: ${selectedFriend.textContent}!`;
+
+            // Remove the selected friend from the list
+            selectedFriend.remove();
+        }
+    </script>
+
+</body>
+</html>
+
+</body>
+</html>
